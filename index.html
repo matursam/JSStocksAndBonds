@@ -5,9 +5,11 @@
 	<script type="text/javascript" src="game.js"></script>
 	<title>Stocks and Bonds</title>
 </head>
-<body>
+<body onload="startNewGame()">
 
-<h1>A simple JS recreation of the game "Stocks and Bonds"</h1>
+<h1>Stocks and Bonds</h1>
+
+<button type="button" onclick="startNewGame()">Start New Game</button>
 
 <table style="width:100%"> 
 
@@ -167,7 +169,11 @@
 	</tr>
 </table>
 
-<button type="button" onclick="startNewGame()">Start New Game</button>
+<button type="button" onclick="nextTurn()">Next Turn</button>
+
+<p id="turn number">
+Turn -
+</p>
 
 </body>
 </html>

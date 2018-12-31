@@ -1,5 +1,5 @@
 
-var bearMarket = [
+const bearMarket = [
 	[12, 14, 13, 10, 10, 20, 21, 25, 8],
 	[7, -6, 10, -10, 30, 6, -19, 22, -2],
 	[9, 10, 7, -5, -20, 12, 21, 18, 7],
@@ -13,7 +13,7 @@ var bearMarket = [
 	[-8, -10, -10, -15, -20, -20, -23, -25, -7]
 ]
 
-var bullMarket = [
+const bullMarket = [
 	[-2, -10, -7, -9, -2, -9, -7, -16, -4],
 	[26, 16, 25, 8, -14, 21, 14, -4, 17],
 	[18, 23, 11, 12, 46, 18, -5, 34, 15],
@@ -27,6 +27,69 @@ var bullMarket = [
 	[24, 24, 23, 20, 51, 27, 38, 33, 18],
 ]
 
+var stockValues = new Array(10)
+
+//Define constants
+const NUM_TURNS = 10
+const STARTING_STOCK_PRICE = 100;
+//Define global variables
+var turnNumber = 0;
+var currentMarket = "Bull"
+
 function startNewGame() {
+	// Initialize the stock values inner arrays
+	for(i = 0; i < 10; i++) {
+		stockValues[i] = new Array(10);
+	}
+	turnNumber = 1;
+	document.getElementById("turn number").innerHTML = "Turn: " + turnNumber;
+	currentMarket = bullOrBear();
+	var calculator;
+	if(currentMarket == "Bull") {
+		calculator = bullMarket;
+	}
+	else {
+		calculator = bearMarket;
+	}
+	//Roll dice to get market value
+	var calculatorIndex = diceRoll() - 2
 	
+	//Calculate initial stock values
+	console.log("Calulating Stock Prices:")
+	for(i = 1; i < 9; i++) {
+		var price = STARTING_STOCK_PRICE + calculator[calculatorIndex][i];
+		stockValues[i][turnNumber] = String(price);
+		console.log(price);
+	}
+	//Update the board
+	updateBoard();
+}
+
+function nextTurn() {
+	
+}
+
+function updateBoard() {
+	console.log("Updating Board:")
+	//Set the bond price to 1000, since it never changes
+	document.getElementById("1-" + turnNumber).innerHTML = "1000";
+	for(i = 2; i < 10; i++) {
+		var id = i + "-" + turnNumber;
+		var current = document.getElementById(String(id));
+		current.innerHTML = String(stockValues[i - 1][turnNumber]);
+		console.log(stockValues[i - 1][turnNumber]);
+	}
+}
+
+function diceRoll() {
+	var d1 = Math.floor(Math.random() * 6) + 1;
+	var d2 = Math.floor(Math.random() * 6) + 1;
+	return d1 + d2;
+}
+
+function bullOrBear() {
+	if(Math.random >= 0.5) {
+		return "Bull";
+	}
+	return "Bear";
 }
