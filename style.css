@@ -1,14 +1,45 @@
 body {
   background-color: white;
 }
+
+div {
+  
+}
+
 h1 {
   color: black;
 }
 p {
-  color: red;
+  color: black;
 }
 
-table, th, td {
+table {
+  margin: auto;
+  border-collapse: collapse;
+  border: 1px solid black;
+  color: black;
+}
+
+#prices {
+  margin: auto;
 	border-collapse: collapse;
-	border: 1px solid black;
+  border: 5px solid brown;
+  color: black;
+}
+
+#holdings {
+  margin: auto;
+  border-collapse: collapse;
+  border: 5px solid brown;
+  color: black;
+  width: 100%;
+}
+
+#title {
+  color: black;
+  margin: auto;
+  width: 50%;
+  border: 3px solid black;
+  padding: 10px;
+  text-align: center
 }
